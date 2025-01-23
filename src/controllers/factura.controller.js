@@ -15,7 +15,7 @@ export const add_fact = async (req, res) => {
         url: `${process.env.url_api}/v1/bills/validate`,
         headers: { Accept: 'application/json', 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         method: 'POST',
-        data: data,
+        data: JSON.stringify(data),
       };
       console.log(config);
       // Para no quemar solicitudes
