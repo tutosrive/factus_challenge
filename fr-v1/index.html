@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enviamos</title>
+  <link rel="stylesheet" href="./resources/css/styles.css" />
+  <script defer type="module" src="./resources/js/index.mjs"></script>
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+</head>
+
+<body class="d-flex flex-column vh-75 bg-dark" data-bs-theme="dark">
+  <header class="fixed-top">
+    <!-- 
+        el <nav> de aquí correspone a su tema preferido (https://bootswatch.com/). Realice las adataciones necesarias,
+        una de ellas, para el nav: id="main-menu"
+      -->
+    <nav id="main-menu" class="navbar navbar-expand-lg card-blur">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="Inicio"><img class="logo-header" id="homeImg"
+            src="./resources/assets/images/courier.webp" alt="logo" width="50px" /></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+          aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="" id="link-home">Inicio
+                <span class="visually-hidden"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Mercancías</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true"
+                aria-expanded="false">Envíos</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="">Paquetes</a>
+                <a class="dropdown-item" href="">Sobres</a>
+                <a class="dropdown-item" href="">Cajas</a>
+                <a class="dropdown-item" href="">Bultos</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="">Consulta de estados</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Estados</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true"
+                aria-expanded="false">Opción 6</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="">Sustentar 1</a>
+                <a class="dropdown-item" href="">Sustentar 2</a>
+                <a class="dropdown-item" href="">Sustentar 3</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="">¿Quiénes harán la sustentación?</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Acerca de...</a>
+            </li>
+          </ul>
+          <div class="dropstart">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true"
+              aria-expanded="false">Usuarios</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="">Sustentar 1</a>
+              <a class="dropdown-item" href="">Sustentar 2</a>
+              <a class="dropdown-item" href="">Sustentar 3</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="">Sobre sustentar...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main" class="flex-shrink-0 pt-5 mt-4"></main>
+
+  <footer class="fixed-bottom">
+    <div class="container-fluid bg-dar">
+      <!-- reemplace el <p> siguiente por un pie de página de su agrado, respetando el tema de la página -->
+      <p class="text-center mb-0 py-2 card-blur">© 2025 Sistema de Logística - SRM</p>
+    </div>
+  </footer>
+</body>
+
+</html>

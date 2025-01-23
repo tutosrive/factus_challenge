@@ -1,0 +1,93 @@
+<!-- 
+    Formulario para la adición y edición de cajas
+    Note que cada <input> tiene un ID que lo identifica de manera única.
+    Consulte en https://www.w3schools.com/html/html_form_input_types.asp los tipos de cada <input>
+    Consulte también en https://www.w3schools.com/html/html_form_attributes.asp los atributos utlizados aquí
+    https://www.youtube.com/watch?v=hl_Twm8PJec (validaciones)
+    https://lenguajehtml.com/html/validaciones/validaciones-html5/ (validaciones)
+    Con base en este formulario puede implementar los demás que se requieren
+ -->
+<form id="form-cajas">
+  <fieldset>
+    <div class="row mx-1 my-0 mt-2">
+      <!-- ID -->
+      <div class="col-4">
+        <div class="form-group">
+          <label for="nroGuia" class="form-label my-0">Número guía</label>
+          <input type="text" class="form-control" id="nroGuia" placeholder="Asignación automática" disabled />
+        </div>
+      </div>
+
+      <!-- Frágil -->
+      <div class="col">
+        <div class="form-checkbox mt-4 pt-2 float-end">
+          <label class="form-check-label" for="fragil">Frágil</label>
+          <input class="form-check-input" type="checkbox" id="fragil" name="fragil" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Clientes -->
+    <div class="row mx-1 mt-2">
+      <!-- Remitente -->
+      <div class="col">
+        <div class="form-group">
+          <label for="remitente" class="form-label my-0">Remitente</label>
+          <select class="form-control" id="remitente" name="remitente" required></select>
+        </div>
+      </div>
+
+      <!-- Destinatario -->
+      <div class="col">
+        <div class="form-group"></div>
+        <label for="destinatario" class="form-label my-0">Destinatario</label>
+        <select class="form-control" id="destinatario" name="destinatario" required></select>
+      </div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="row mx-1 mt-2">
+      <div class="form-group">
+        <label for="contenido" class="form-label my-0">Dice Contener</label>
+        <input type="text" class="form-control" id="contenido" name="contenido" placeholder="Contenido de la caja" minlength="3" maxlength="100" required />
+      </div>
+    </div>
+
+    <!-- Medidas -->
+    <div class="row mx-1 mt-2">
+      <!-- Alto -->
+      <div class="col">
+        <div class="form-group">
+          <label for="alto" class="form-label my-0">Alto</label>
+          <input type="number" class="form-control" id="alto" name="alto" value="1.0" min="0.1" max="2.59" step="0.01" placeholder="metros" required />
+        </div>
+      </div>
+
+      <!-- Ancho -->
+      <div class="col">
+        <div class="form-group"></div>
+        <label for="ancho" class="form-label my-0">Ancho</label>
+        <input type="number" class="form-control" id="ancho" name="ancho" value="1.0" min="0.1" max="2.44" step="0.01" placeholder="metros" required />
+      </div>
+
+      <!-- Largo -->
+      <div class="col">
+        <div class="form-group"></div>
+        <label for="largo" class="form-label my-0">Largo</label>
+        <input type="number" class="form-control" id="largo" name="largo" value="1.0" min="0.1" max="12.19" step="0.01" placeholder="metros" required />
+      </div>
+    </div>
+
+    <!-- Peso y valor declarado -->
+    <div class="row mt-2 mx-1">
+      <div class="col">
+        <label for="peso" class="form-label my-0">Peso</label>
+        <input type="number" class="form-control" id="peso" name="peso" value="0.1" min="0.1" max="1000000.0" step="0.01" placeholder="Peso en kilogramos" required />
+      </div>
+      <div class="col">
+        <label for="valorDeclarado" class="form-label my-0">Valor declarado</label>
+        <input type="number" id="valorDeclarado" name="valorDeclarado" class="form-control" placeholder="Costo estimado de la caja" value="0.0" min="0.0" max="100000000.0" step="1000.0" required />
+      </div>
+    </div>
+  </fieldset>
+</form>

@@ -1,0 +1,29 @@
+.logo-img {
+  filter: drop-shadow(1px 1px 4px rgb(255, 255, 255));
+  /* mix-blend-mode: color-dodge; */
+}
+
+.rounded {
+  border-radius: 23px !important;
+}
+
+.card-blur {
+  backdrop-filter: blur(25px);
+}
+
+.card,
+.card > * {
+  border-radius: 12px !important;
+}
+
+.logo-float {
+  max-width: 450px;
+}
+
+.text-lema {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 900;
+  text-decoration: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+}

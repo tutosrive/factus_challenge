@@ -1,0 +1,52 @@
+<!-- 
+    Formulario para la adición y edición de mercancias
+    Note que cada <input> tiene un ID que lo identifica de manera única.
+    Consulte en https://www.w3schools.com/html/html_form_input_types.asp los tipos de cada <input>
+    Consulte también en https://www.w3schools.com/html/html_form_attributes.asp los atributos utlizados aquí
+    https://www.youtube.com/watch?v=hl_Twm8PJec (validaciones)
+    https://lenguajehtml.com/html/validaciones/validaciones-html5/ (validaciones)
+    Con base en este formulario puede implementar los demás que se requieren
+ -->
+<form id="form-clientes">
+  <fieldset>
+    <!-- IMPORTANTE: no es necesario mostrar el ID de las mercancías, por eso type="hidden"  -->
+    <div class="row mx-1 my-0">
+      <div class="col">
+        <div class="form-group">
+          <label for="disponible" class="form-label my-0">ID</label>
+          <input type="text" class="form-control" id="id" name="id" minlength="5" maxlength="15" />
+        </div>
+      </div>
+
+      <div class="col-8">
+        <div class="form-group">
+          <label for="nombre" class="form-label my-0">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" minlength="1" maxlength="100" required />
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-1 my-0">
+      <div class="col">
+        <div class="form-group">
+          <label for="direccion" class="form-label my-0">Dirección</label>
+          <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Cra. 22 #45C-64, B. San Jorge" minlength="10" maxlength="150" required />
+        </div>
+      </div>
+
+      <div class="col-5">
+        <div class="form-group">
+          <label for="telefono" class="form-label my-0">Teléfono</label>
+          <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Número de teléfono" minlength="10" maxlength="15" required />
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-1 my-0">
+      <div class="form-group">
+        <label for="ciudad" class="form-label my-0">Ciudad</label>
+        <select class="form-control" id="ciudad" name="ciudad" required></select>
+      </div>
+    </div>
+  </fieldset>
+</form>

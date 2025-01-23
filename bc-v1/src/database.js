@@ -1,8 +1,10 @@
 import pg from 'pg';
 
 const ENV = process.env;
-console.log(ENV.DB_PASSWORD);
 
+/**
+ * Gestor de la base de datos
+ */
 const db = new pg.Pool({
   user: ENV.DB_USER,
   host: ENV.DB_HOST,

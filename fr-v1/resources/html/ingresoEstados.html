@@ -1,0 +1,34 @@
+<form id="form-estados-add">
+  <fieldset>
+    <!-- Todas las columnas de esta fila se establecen en "col" para que en dispositivos móviles, los campos "salten" de línea -->
+    <div class="row mt-2 pt-1 mx-1">
+      <!-- Fecha y hora actual -->
+      <div class="col">
+        <div class="form-group">
+          <label for="fecha-hora-add" class="form-label text-nowrap">Fecha y hora</label>
+          <input class="form-control" type="datetime-local" name="fecha-hora-add" id="fecha-hora-add" />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2 pt-1 mx-1 pb-1">
+      <!-- Tipo de Envío -->
+      <div class="col">
+        <div class="form-group">
+          <label class="form-label text-nowrap" for="tipo-estado"> Nuevo estado </label>
+          <select class="form-select" name="tipo-estado" id="tipo-estado" required>
+            <option>Seleccione un estado</option>
+            <option value="RECIBIDO">Recibido</option>
+            <option value="EN_PREPARACION">En preparación</option>
+            <option value="ENVIADO">Enviado</option>
+            <option value="EN_CAMINO">En camino</option>
+            <option value="DEVUELTO">Devuelto</option>
+            <option value="EXTRAVIADO">Extraviado</option>
+            <option value="REENVIADO">Enviado nuevamente</option>
+            <option value="INDEFINIDO">Indefinido</option>
+            <option value="ENTREGADO">Entregado</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>

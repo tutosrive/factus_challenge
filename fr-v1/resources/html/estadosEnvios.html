@@ -1,0 +1,43 @@
+<section id="seccion-estados" class="mx-3">
+  <!-- Título de sección -->
+  <header>
+    <h3>Estados de Envíos</h3>
+  </header>
+  <!-- Formulario para la búsqueda -->
+  <form id="form-estados">
+    <fieldset>
+      <!-- Todas las columnas de esta fila se establecen en "col" para que en dispositivos móviles, los campos "salten" de línea -->
+      <div class="row mt-2">
+        <!-- Fecha y hora actual -->
+        <div class="col">
+          <div class="form-group">
+            <label for="fecha-hora" class="form-label text-nowrap">Fecha y hora actual</label>
+            <input class="form-control" type="datetime" name="fecha-hora" id="fecha-hora" readonly />
+          </div>
+        </div>
+        <!-- Tipo de Envío -->
+        <div class="col">
+          <div class="form-group">
+            <label class="form-label text-nowrap" for="tipo-envio"> Tipo de Envío </label>
+            <select class="form-select" name="tipo-envio" id="tipo-envio" required></select>
+          </div>
+        </div>
+        <!-- Número de guía -->
+        <div class="col">
+          <div class="form-group">
+            <label for="nroGuia" class="form-label text-nowrap">Número de guía</label>
+            <input class="form-control" type="text" name="nroGuia" id="nroGuia" minlength="8" maxlength="8" required />
+          </div>
+        </div>
+        <!-- Botón de búsqueda -->
+        <div class="col mt-4 pt-2">
+          <button class="btn btn-primary" id="buscar-envio">Buscar Envío</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <!-- Bloque de texto que contendrá la información del Envío -->
+  <div class="mx-1 mt-3">
+    <div class="form-group form-control" id="container-info" style="visibility: hidden"></div>
+  </div>
+</section>
