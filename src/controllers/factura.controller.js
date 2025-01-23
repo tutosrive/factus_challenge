@@ -1,8 +1,14 @@
+import axios from 'axios';
+import { validate_body } from '../helpers/helpers.mjs';
+
 export const add_fact = async (req, res) => {
   try {
     // Cuerpo de solicitud
     const data = req.body;
-    if (validate_body(data) === true) {
+    const validation = validate_body(data);
+    if (validation.ok === true) {
+      console.log('Validation OK');
+
       const token = process.env.access_token;
       // Configuración
       const config = {
@@ -11,94 +17,26 @@ export const add_fact = async (req, res) => {
         method: 'POST',
         data: data,
       };
-
       console.log(config);
-      //   axios
-      //     .request(config)
-      //     .then((res) => {
-      //       console.log(res.data);
-      //     })
-      //     .catch((e) => {
-      //       console.log(e);
-      //     });
+      // Para no quemar solicitudes
+      // Peticion real
+      axios
+        .request(config)
+        .then((res) => {
+          // String: "created"
+          console.log(res.data.status);
+          if (res.data.status === 'created') {
+            return res.json({ message: 'OK', data: res.data });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          return res.json({ messgae: 'ERROR', error: e });
+        });
     } else {
-      res.status(400).json({ status: res.statusCode, messaje: 'Hay un problema con el cuerpo de la soliitud' });
+      return res.status(400).json({ status: res.statusCode, messaje: 'Hay un problema con el cuerpo de la solicitud', conflict: validation });
     }
   } catch (error) {
     res.status(500).json({ status: res.statusCode, messaje: 'Hubo un error al intentar realizar la solicitud', error });
   }
-};
-
-function validate_body(body) {
-  body.numbering_range_id = 8;
-
-  if (typeof body !== 'object') {
-    return false;
-  }
-
-  for (let property in body) {
-    console.log(property);
-  }
-
-  return true;
-}
-
-const body = {
-  numbering_range_id: 8, // Se consume del endpoint es de rango de numeracion
-  reference_code: '12345931AT', // referencia de la venta
-  observation: 'Aún estarán en live? en tiktok?',
-  payment_method_code: 10, // metodo de pago se consume por tabla, en documentacion
-  customer: {
-    identification: '123456789',
-    dv: 3, // Digito de verificacion. se envia si es nit
-    company: '',
-    trade_name: '',
-    names: 'Tutos Sirve*',
-    address: 'calle 1 # 2-68',
-    email: 'tutosirve@enigmasas.com',
-    phone: '1234567890',
-    legal_organization_id: 2, //TIpo de organizacion, persona natural o juridica. se consume de tabla
-    tribute_id: 21, // Si aplica o no aplica iva. se consume de tabla
-    identification_document_id: 3, // Tipo de identificacion se consume de tabla
-    municipality_id: 980, // municipio del cliente, se consume del endpoint municipios
-  },
-  items: [
-    {
-      code_reference: '12345',
-      name: 'Factus versión PRO',
-      quantity: 1, //requerido
-      discount_rate: 20, // valor del porcentatje de descuento
-      price: 5000000,
-      tax_rate: '19.00', // valor del descuento aplicado
-      unit_measure_id: 70, // se consume del endpoint unidad de medida
-      standard_code_id: 1, // codigo para productos o serviciois se consume de tabla
-      is_excluded: 0, // excluido de iva o no
-      tribute_id: 1, // Tributto aplicado, se consume de endpoint tributo productos
-      withholding_taxes: [
-        // array de las tasas de retencion se cosume del endpoint tribuos
-        {
-          code: '06',
-          withholding_tax_rate: '7.00',
-        },
-        {
-          code: '05',
-          withholding_tax_rate: '15.00',
-        },
-      ],
-    },
-    {
-      code_reference: '12345',
-      name: 'producto de prueba 2',
-      quantity: 1, // requerido
-      discount: 0, //requerido, si no tiene descuento debe ir en 0
-      discount_rate: 0,
-      price: 50000,
-      tax_rate: '5.00',
-      unit_measure_id: 70, // requerido por defecto 70
-      standard_code_id: 1,
-      is_excluded: 0,
-      tribute_id: 1,
-      withholding_taxes: [],
-    },
-  ],
 };

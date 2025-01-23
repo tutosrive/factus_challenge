@@ -19,7 +19,7 @@ export async function token() {
     // Configuración de la solicitud
     const config = {
       method: 'post',
-      // url: `${process.env.url_api}/oauth/token`,
+      url: `${process.env.url_api}/oauth/token`,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -36,11 +36,10 @@ export async function token() {
         console.log(e);
       });
   };
+  query();
   id_interval = setInterval(() => {
     query();
   }, 3300000); // cada 55 minutos se genera un nuevo token
-
-  query();
 }
 
 export default token;

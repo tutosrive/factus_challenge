@@ -1,4 +1,5 @@
 import db from '../database.js';
+import { generate_str_of_dict, get_keys_dict } from '../helpers/helpers.mjs';
 
 /**
  * Obtener todos los datos de una tabla (se debe enviar el parámetro `:table`)
@@ -26,14 +27,16 @@ export const get_from = async (req, res) => {
  */
 export const add_data = async (req, res) => {
   try {
+    const { table } = req.params;
     const data = req.body;
-
-    const { rows, rowCount } = await db.query('INSERT INTO unit_measure values($1, $2, $3)', [data.id, data.code, data.name]);
+    const str_query = generate_str_of_dict(data, false);
+    const cols = get_keys_dict(data);
+    const { rows, rowCount } = await db.query(`INSERT INTO ${table}(${cols}) values(${str_query}) RETURNING *`);
     if (rowCount === 0) {
-      return res.status(404).json({ status: res.statusCode, message: 'No se encontraron datos' });
+      return res.status(404).json({ status: res.statusCode, message: 'No se agregaron los datos' });
     }
-    res.json({ message: 'Datos agregados' });
+    res.json({ message: 'Datos agregados', added: rows[0] });
   } catch (e) {
-    res.status(500).json({ status: res.statusCode, message: 'Error al obtener los datos', error: e });
+    res.status(500).json({ status: res.statusCode, message: 'Error al agregar los datos', error: e });
   }
 };
