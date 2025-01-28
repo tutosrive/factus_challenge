@@ -9,7 +9,7 @@ export function validate_body(body) {
   let missing_properties = [];
   let require = [];
   const requeriments = [
-    ['reference_code', 'string'],
+    // ['reference_code', 'string'],
     ['observation', 'string'],
     ['payment_method_code', 'number'],
     ['customer', 'object'],
@@ -33,10 +33,22 @@ export function validate_body(body) {
         require.push({ property: requeriment[0], type_require: requeriment[1], type_received });
         ok = false;
       }
+      if (requeriment[0] === 'items') {
+        for (let item of body.items) item.code_reference = rd_key(5);
+      }
+      // Validar longitud de la propiedad "observación"
+      if (requeriment[0] === 'observation') {
+        const len_obs = body['observation'].length;
+        if (len_obs > 249) {
+          require.push({ property: 'observation', type_require: 'String, length <= 249', type_received: `${type_received}, length = ${len_obs}` });
+          ok = false;
+        }
+      }
     }
   }
   // Agregar rango de numeración
   body.numbering_range_id = 8;
+  body.reference_code = rd_key(10);
   missing_properties.length > 0 || require.length > 0 ? (message = 'Hay errores') : (message = 'OK');
   let validation = { ok, message };
   if (missing_properties.length > 0) validation.missing_properties = missing_properties;

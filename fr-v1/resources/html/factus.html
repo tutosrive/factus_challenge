@@ -1,0 +1,42 @@
+<form id="form-factus">
+    <d>
+        <div class="row mx-1 my-0">
+            <!-- Selección forma de pago -->
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="pago" class="form-label my-0">Método de pago</label>
+                    <select class="form-control" id="pago" name="pago" required></select>
+                </div>
+            </div>
+            <!-- Selección del cliente -->
+            <div class="col-6">
+                <div class="form-group">
+                    <!-- Selección de clientes en base de datos -->
+                    <div>
+                        <label for="cliente" class="form-label my-0">Cliente</label>
+                        <select class="form-control" id="cliente" name="cliente" required></select>
+                    </div>
+                    <!-- Botón para agregar nuevos clientes -->
+                    <div class="mt-1">
+                        <button class="btn btn-sm col-12" id="new-client">Agregar nuevo cliente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Observación respecto a la factura -->
+        <div class="form-group mx-3 mt-2">
+            <label for="observacion" class="form-label my-0">Observación</label>
+            <input type="text" class="form-control" id="observacion" name="observacion" maxlength="249"
+                placeholder="Esta es la descripción general de la venta" />
+        </div>
+        <!-- Contenedor de productos -->
+        <div class="row mx-1 my-2">
+            <div class="col">
+                <div class="form-group fs-3">
+                    <label for="products" class="form-label my-0">Productos</label>
+                    <div class="form-contro p-4" id="ctn-products" name="products"></div>
+                </div>
+            </div>
+        </div>
+        </fieldset>
+</form>

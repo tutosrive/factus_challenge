@@ -1,0 +1,299 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 9401,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008805",
+            "api_client_name": "santiagoriveramarin83 @ gmail.com",
+            "reference_code": "F7G5X8Y9Q9R",
+            "identification": "123456789",
+            "graphic_representation_name": "Tutos Rive",
+            "company": "",
+            "trade_name": "",
+            "names": "Tutos Rive",
+            "email": "tutosirve@enigmasas.com",
+            "total": "50000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 09:16:27 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9400,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008804",
+            "api_client_name": "santiagoriveramarin83 @ gmail.com",
+            "reference_code": "E3N9U0X8D1H",
+            "identification": "123456789",
+            "graphic_representation_name": "Tutos Rive",
+            "company": "",
+            "trade_name": "",
+            "names": "Tutos Rive",
+            "email": "tutosirve@enigmasas.com",
+            "total": "50000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:51:13 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9399,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008803",
+            "api_client_name": "mauri.ing.21@gmail.com",
+            "reference_code": "652342342",
+            "identification": "123456789",
+            "graphic_representation_name": "alan turing",
+            "company": "",
+            "trade_name": "",
+            "names": "alan turing",
+            "email": "alanturing@gmail.com",
+            "total": "6435.00",
+            "status": 1,
+            "errors": [
+                "Regla: FAX14, Notificación: Reporta una tarifa diferente para uno de los tributos enunciados en la tabla 13.3.9",
+                "Regla: FAS14, Notificación: No corresponde a un valor valido de la lista"
+            ],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:45:54 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9398,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008802",
+            "api_client_name": "yeferparra18@gmail.com",
+            "reference_code": "Factura14",
+            "identification": "23474208",
+            "graphic_representation_name": "Celmira",
+            "company": "",
+            "trade_name": "",
+            "names": "Celmira",
+            "email": "celmiravargas10@gmail.com",
+            "total": "4000000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:45:31 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9397,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008801",
+            "api_client_name": "yeferparra18@gmail.com",
+            "reference_code": "fact0012029",
+            "identification": "234747208",
+            "graphic_representation_name": "Probando Probando",
+            "company": "",
+            "trade_name": "",
+            "names": "Probando Probando",
+            "email": "Pepito@perez.com",
+            "total": "90000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:40:01 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9396,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008800",
+            "api_client_name": "yeferparra18@gmail.com",
+            "reference_code": "Factura13",
+            "identification": "23474208",
+            "graphic_representation_name": "Celmira",
+            "company": "",
+            "trade_name": "",
+            "names": "Celmira",
+            "email": "celmiravargas10@gmail.com",
+            "total": "4000000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:38:41 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9395,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008799",
+            "api_client_name": "andresbra23123@hotmail.com",
+            "reference_code": "fact-1737682676576",
+            "identification": "3212312312",
+            "graphic_representation_name": "braayan g",
+            "company": "",
+            "trade_name": "",
+            "names": "braayan g",
+            "email": "andresbra23124@gmail.com",
+            "total": "400000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:38:09 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9394,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008798",
+            "api_client_name": "yeferparra18@gmail.com",
+            "reference_code": "Factura12",
+            "identification": "23474208",
+            "graphic_representation_name": "Celmira",
+            "company": "",
+            "trade_name": "",
+            "names": "Celmira",
+            "email": "celmiravargas10@gmail.com",
+            "total": "4000000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:34:52 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9393,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008797",
+            "api_client_name": "andresbra23123@hotmail.com",
+            "reference_code": "fact-1737682411592",
+            "identification": "1234567890",
+            "graphic_representation_name": "sdadasd",
+            "company": "",
+            "trade_name": "",
+            "names": "sdadasd",
+            "email": "dasdasd@sdad.com",
+            "total": "950000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:33:45 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        },
+        {
+            "id": 9392,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008796",
+            "api_client_name": "yeferparra18@gmail.com",
+            "reference_code": "Factura11",
+            "identification": "23474208",
+            "graphic_representation_name": "Celmira",
+            "company": "",
+            "trade_name": "",
+            "names": "Celmira",
+            "email": "celmiravargas10@gmail.com",
+            "total": "4000000.00",
+            "status": 1,
+            "errors": [],
+            "send_email": 0,
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "created_at": "23-01-2025 08:32:05 PM",
+            "credit_notes": [],
+            "debit_notes": []
+        }
+    ]
+}

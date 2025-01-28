@@ -1,11 +1,18 @@
 /**
  * Mostrar una "alerta" (Toast) cuando el formulario es incǘalido y
  * se presiona el botón "Añadir" del "Dialog"
- * @param {String} span Mensaje de alerta
+ * @param {String} msg Mensaje de alerta
+ * @param {boolean} just ¿Debe incluirse solo el mensaje enviado?
  */
-export function toastBeforeAddRecord(msg = null) {
+export function toastBeforeAddRecord(msg = null, just = false) {
   const span = msg ?? 'Debe <span class="text-warning">completar</span> el formulario'
-  Toast.show({ message: `${span} antes de presionar el botón <button class="btn btn-primary">${addButton}</button>`, mode: 'warning', duration: 1000 })
+  let message = ''
+  if (just === true) {
+    message = msg
+  } else {
+    message = `${span} antes de presionar el botón <button class="btn btn-primary">${addButton}</button>`
+  }
+  Toast.show({ message, mode: 'warning', duration: 5000 })
 }
 
 /**
@@ -30,28 +37,6 @@ export function showInfoAboutUse(msg) {
   cont < 2 ? Toast.show({ message: `Puede <span class="text-info">agregar</span> ${msg} con <span class="d-inline">${addRowButton}</span> y <span class="text-danger">eliminarlos</span> con ${deleteRowButton()}` }) : null
 }
 
-// Versión original de showInfoAboutUse (copia por si la daño...)
-/**
- * * export function showInfoAboutUse(msg = null) {
- *  const span = msg ?? 'registros'
- *  let cont // Para regular las veces que se mostrará el "Toast"
- *  const countOnLocalStorage = localStorage.getItem('alertInfoOnSearch')
-   // Verificar la existencia del contador
- *  if (!countOnLocalStorage) {
-     // Si no existe, crearlo
- *    localStorage.setItem('alertInfoOnSearch', 1)
- *    cont = countOnLocalStorage
- *  } else {
-     // Castear el valor del contador almacenado
- *    cont = parseInt(countOnLocalStorage)
-     // Contador menor a 3? seguir aumentanfo contador : null
- *    cont < 3 ? localStorage.setItem('alertInfoOnSearch', cont + 1) : null
- *  }
-   // Si el contador es menor a 3, el "Toast" se mostrará
- *  cont < 3 ? Toast.show({ message: `Puede <span class="text-info">agregar</span> ${span} con <span class="d-inline">${addRowButton}</span> y <span class="text-danger">eliminarlos</span> con ${deleteRowButton()}` }) : null
- *}
- */
-
 export const classesModal = 'position-absolute top-50 start-50 translate-middle bg-dark col-12 col-sm-10 col-md-9 col-lg-8 col-xl-7'
 
 /**
@@ -62,28 +47,30 @@ export const classesModal = 'position-absolute top-50 start-50 translate-middle 
  * @param {String} classPop Lista de clases separadas por un espacio, se aplicarán al popover
  * @returns
  */
-export function popover(title = '', message = '', buttons = [], classPop = '') {
+export function popover(title = '', message = '', buttons = [], classPop = null) {
   const body = document.querySelector('body')
   let buttonsPop = ''
   const pop = document.createElement('div')
-  const classes = classPop.split(' ')
+  if (classPop !== null) {
+    const classes = classPop.split(' ')
+    pop.classList.add(...classes)
+  }
 
   body.querySelector('#pop-pup') ? body.querySelector('#pop-pup').remove() : null
   pop.setAttribute('popover', 'manual')
-  pop.classList.add(...classes)
   pop.id = `pop-pup-${Helpers.idRandom()}`
 
-  buttons.forEach(btn => {
+  buttons.forEach((btn) => {
     buttonsPop += `<div class="col">${btn}</div>`
   })
 
   pop.innerHTML = `
     <div class="p-4" style="max-width: 450px;">
       <div class="pop-header">
-        <h5 class="pop-title">${title}</h5>
+      <h5 class="pop-title">${title}</h5>
       </div>
       <hr>
-      <div class="pop-body">
+      <div class="pop-body overflow-y-auto" style="max-height: 60vh">
         <p>${message}</p>
       </div>
       <hr>
@@ -104,13 +91,13 @@ export function popover(title = '', message = '', buttons = [], classPop = '') {
  */
 export function showPopover(pop) {
   pop.showPopover()
-  document.querySelectorAll('body > *').forEach(e => {
-    e.addEventListener('click', ev => {
-      ev.preventDefault()
-      ev.stopPropagation()
-    })
-  })
+  document.querySelectorAll('body > *').forEach((e) => e.addEventListener('click', __block_events))
   document.querySelector('body').style.filter = 'blur(2px)'
+}
+
+function __block_events(ev) {
+  ev.preventDefault()
+  ev.stopPropagation()
 }
 
 /**
@@ -120,5 +107,14 @@ export function showPopover(pop) {
 export function closePopover(pop) {
   // pop.hidePopover()
   pop.remove()
+  document.querySelectorAll('body > *').forEach((e) => e.removeEventListener('click', __block_events))
   document.querySelector('body').style.filter = ''
+}
+
+export async function new_client() {
+  try {
+    window.open('/pages/cliente.html', '_blank')
+  } catch (error) {
+    console.warn(error)
+  }
 }

@@ -1,0 +1,127 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": {
+        "company": {
+            "url_logo": "http://api-sandbox.factus.com.co/storage/images/logos/lC5CLGXHgwlv8slaoiKC6dHkVLIXQVaDkL9C1Yqc.png",
+            "nit": "901724254",
+            "dv": "1",
+            "company": "FACTUS S.A.S.",
+            "name": "FACTUS S.A.S.",
+            "graphic_representation_name": "FACTUS S.A.S.",
+            "registration_code": "bnnmbvncv",
+            "economic_activity": "6201",
+            "phone": "3133045345",
+            "email": "FACTUSFACTURACION@GMAIL.COM",
+            "direction": "CARRERA 10 # 9 - 04",
+            "municipality": "San Gil"
+        },
+        "customer": {
+            "identification": "123456789",
+            "dv": null,
+            "graphic_representation_name": "Tutos Rive",
+            "trade_name": "",
+            "company": "",
+            "names": "Tutos Rive",
+            "address": "calle 1 # 2-68",
+            "email": "tutosirve@enigmasas.com",
+            "phone": "1234567890",
+            "legal_organization": {
+                "id": 2,
+                "code": "2",
+                "name": "Persona Natural"
+            },
+            "tribute": {
+                "id": 21,
+                "code": "ZZ",
+                "name": "No aplica"
+            },
+            "municipality": {
+                "id": 980,
+                "code": "68679",
+                "name": "San Gil"
+            }
+        },
+        "numbering_range": {
+            "prefix": "SETP",
+            "from": 990000000,
+            "to": 995000000,
+            "resolution_number": "18760000001",
+            "start_date": "19-01-2019",
+            "end_date": "19-01-2030",
+            "months": 132
+        },
+        "billing_period": [],
+        "bill": {
+            "id": 9402,
+            "document": {
+                "code": "01",
+                "name": "Factura electrónica de Venta"
+            },
+            "number": "SETP990008806",
+            "reference_code": "L8W2V5A8T8I",
+            "status": 1,
+            "send_email": 0,
+            "qr": "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=020cbad1c4e48c6efce78fac969e31d8440fa5c0d52e0ef251c49a99f87562dc35020f3274af09b5c1eb5d49a3473190",
+            "cufe": "020cbad1c4e48c6efce78fac969e31d8440fa5c0d52e0ef251c49a99f87562dc35020f3274af09b5c1eb5d49a3473190",
+            "validated": "23-01-2025 09:21:45 PM",
+            "discount_rate": "0.00",
+            "discount": "0.00",
+            "gross_value": "47619.05",
+            "taxable_amount": "47619.05",
+            "tax_amount": "2380.95",
+            "total": "50000.00",
+            "observation": "Sexto cuerpo de factura desde mi backend",
+            "errors": [],
+            "created_at": "23-01-2025 09:21:42 PM",
+            "payment_due_date": null,
+            "qr_image": "data:image/png;base64, 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",
+            "has_claim": 0,
+            "is_negotiable_instrument": 0,
+            "payment_form": {
+                "code": "1",
+                "name": "Pago de contado"
+            },
+            "payment_method": {
+                "code": "10",
+                "name": "Efectivo"
+            }
+        },
+        "related_documents": [],
+        "items": [
+            {
+                "code_reference": "12345",
+                "name": "producto de prueba 2",
+                "quantity": 1,
+                "discount_rate": "0.00",
+                "discount": "0.00",
+                "gross_value": "47619.05",
+                "tax_rate": "5.00",
+                "taxable_amount": "47619.05",
+                "tax_amount": "2380.95",
+                "price": "50000.00",
+                "is_excluded": 0,
+                "unit_measure": {
+                    "id": 70,
+                    "code": "94",
+                    "name": "unidad"
+                },
+                "standard_code": {
+                    "id": 1,
+                    "code": "999",
+                    "name": "Estándar de adopción del contribuyente"
+                },
+                "tribute": {
+                    "id": 1,
+                    "code": "01",
+                    "name": "IVA"
+                },
+                "total": 50000,
+                "withholding_taxes": []
+            }
+        ],
+        "withholding_taxes": [],
+        "credit_notes": [],
+        "debit_notes": []
+    }
+}

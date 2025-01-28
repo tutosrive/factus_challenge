@@ -13,20 +13,19 @@ import Inicio from './inicio.mjs'
 
 class App {
   static async main() {
-    // los recursos locales usan rutas relativas empezando por la carpeta principal del proyecto
-    const config = await Helpers.fetchJSON('./resources/assets/config.json')
-    // evite siempre los datos quemados en el código
+    const config = await Helpers.fetchJSON('/resources/assets/config.json')
     window.urlAPI = config.url
-    // Ver: https://javascript.info/browser-environment (DOM|BOM|JavaScript)
-    // Las clases importadas se asignan a referencias de la ventana actual:
     window.icons = icons
     window.DateTime = DateTime
+    window.DateTime.local().setLocale('es-CO')
 
     window.formatDateTime = {
-      inputFormat: 'iso', // "yyyy-MM-dd'T'HH:mm:ss'Z'",  "yyyy-MM-dd'T'HH:mm:ss'Z'
-      outputFormat: 'yyyy-MM-dd hh:mm a',
+      inputFormat: 'dd-MM-yyyy hh:mm:ss a', // Formato de entrada para "23-01-2025 09:16:27 PM"
+      outputFormat: "hh:mm a, 'del' cccc dd 'de' LLLL 'de' yyyy",
       invalidPlaceholder: 'fecha inválida',
+      locale: 'es-CO',
     }
+
     window.Customs = Customs
     window.Home = Inicio
 
@@ -35,9 +34,10 @@ class App {
     window.Tabulator = Tabulator
     window.Toast = Toast
     window.Modal = Popup
-    window.current = null // miraremos si se requiere...
+    window.current = null
     // lo siguiente es para estandarizar el estilo de los botones usados para add, edit y delete en las tablas
     window.addRowButton = `<button id='add-row' class='btn btn-info btn-sm'>${icons.plusSquare}&nbsp;&nbsp;Nuevo registro</button>`
+    window.addProductButton = `<button id='add-product' class='btn btn-info btn-sm'>${icons.plusSquare}&nbsp;&nbsp;Agregar producto</button>`
     window.editRowButton = () => `<button id="edit-row" class="border-0 bg-transparent" data-bs-toggle="tooltip" title="Editar">${icons.edit}</button>`
     window.deleteRowButton = () => `<button id="delete-row" class="border-0 bg-transparent d-inline" data-bs-toggle="tooltip" title="Eliminar">${icons.delete}</button>`
 
@@ -52,18 +52,20 @@ class App {
       // confirmación de acceso a la API REST
       const response = await Helpers.fetchJSON(`${urlAPI}/`)
       console.log(response)
+      let option = ''
 
-      if (response.message === 'ok') {
-        Toast.show({ title: '¡Bienvenido!', message: 'Bienvenido a la logística de envíos T.A', duration: 1000 })
-        App.#mainMenu()
+      if (response.status === 200) {
+        const extract_href = /[^/]+\.html$/
+        option = window.location.href
+        option = option.match(extract_href)[0]
+        if (option === 'index.html') Toast.show({ title: '¡Bienvenido!', message: 'Bienvenido al reto FACTUS - SRM', duration: 1000 })
+        App.#mainMenu(option)
       } else {
         Toast.show({ message: 'Problemas con el servidor de datos', mode: 'danger', error: response })
       }
     } catch (e) {
       Toast.show({ message: 'Falló la conexión con el servidor de datos', mode: 'danger', error: e })
     }
-    // Cargar lapágina de inicio
-    document.querySelector('body').addEventListener('load', App.#loadHome())
     return true
   }
 
@@ -71,81 +73,43 @@ class App {
    * Determina la acción a llevar a cabo según la opción elegida en el menú principal
    * @param {String} option El texto del ancla seleccionada
    */
-  static async #mainMenu() {
-    // referenciar todos los elementos <a>...</a> que hayan dentro de main-menu
-    const listOptions = document.querySelectorAll('#main-menu a')
+  static async #mainMenu(option) {
+    try {
+      if (option === 'index.html') {
+        document.querySelector('body').classList.add('bodyHome')
+      } else {
+        document.querySelector('body').classList.remove('bodyHome')
+      }
 
-    // asignarle un gestor de evento clic a cada opción del menú
-    listOptions.forEach(item =>
-      item.addEventListener('click', async e => {
-        let option = ''
-        try {
-          e.preventDefault()
-          // asignar a option el texto de la opción del menú elegida
-          option = (e.target.text ?? 'Inicio').trim() // <-- Importante!!!
-
-          // if (option === 'Inicio') {
-          //   document.querySelector('body').classList.add('bodyHome')
-          // } else {
-          //   document.querySelector('body').classList.remove('bodyHome')
-          // }
-
-          switch (option) {
-            case 'Inicio':
-              App.#loadHome()
-              // document.querySelector('main').innerText = ''
-              break
-            case 'Clientes':
-              // importar dinámicamente el módulo clientes.mjs
-              const { default: Clientes } = await import('./clientes.mjs')
-              Clientes.init()
-              break
-            case 'Mercancías':
-              // importar dinámicamente el módulo mercancias.mjs
-              const { default: Mercancias } = await import('./mercancias.mjs')
-              Mercancias.init()
-              break
-            case 'Paquetes':
-              // Importar dinámicamente el módulo paquetes.mjs
-              const { default: Paquetes } = await import('./envios.mjs')
-              Paquetes.init('Paquete')
-              break
-            case 'Sobres':
-              // Importar dinámicamente
-              const { default: Sobres } = await import('./envios.mjs')
-              Sobres.init('Sobre')
-              break
-            case 'Bultos':
-              // Importar dinámicamente
-              const { default: Bultos } = await import('./envios.mjs')
-              Bultos.init('Bulto')
-              break
-            case 'Cajas':
-              // Importar dinámicamente el módulo paquetes.mjs
-              const { default: Cajas } = await import('./cajas.mjs')
-              Cajas.init()
-              break
-            case 'Estados':
-              // Importar dinámicamente el módulo estados.mjs
-              const { default: Estados } = await import('./estados.mjs')
-              Estados.init()
-              break
-            case 'Acerca de...':
-              const { default: About } = await import('./about.mjs')
-              About.init()
-              break
-            default:
-              if (option !== 'Envíos') {
-                Toast.show({ message: `La opción ${option} no ha sido implementada`, mode: 'warning', delay: 3000, close: false })
-                console.warn('Fallo en ', e.target)
-              }
+      switch (option) {
+        case 'index.html':
+          App.#loadHome()
+          // document.querySelector('main').innerText = ''
+          break
+        case 'factus.html':
+          const { default: Factus } = await import('./factus.mjs')
+          Factus.init()
+          break
+        case 'cliente.html':
+          const { default: Clientes } = await import('./clientes.mjs')
+          Clientes.init()
+          break
+        case 'about.html':
+          const { default: About } = await import('./about.mjs')
+          About.init()
+          break
+        case 'factusget.html':
+          const { default: FactuSearch } = await import('./factusearch.mjs')
+          FactuSearch.init()
+          break
+        default:
+          if (option !== 'Envíos') {
+            Toast.show({ message: `La opción ${option} no ha sido implementada`, mode: 'warning', delay: 3000, close: false })
           }
-        } catch (e) {
-          Toast.show({ message: `Falló la carga del módulo ${option}`, mode: 'danger', error: e })
-        }
-        return true
-      })
-    )
+      }
+    } catch (e) {
+      Toast.show({ message: `Falló la carga del módulo ${option}`, mode: 'danger', error: e })
+    }
   }
 
   /**

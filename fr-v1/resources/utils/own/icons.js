@@ -139,4 +139,16 @@ export default {
             <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
         </svg>
     `,
+  plusCircle: `
+    <svg fill="#0008ff" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24.00 24.00" enable-background="new 0 0 24 24" xml:space="preserve" stroke="#0008ff" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12,0C5.38,0,0,5.38,0,12c0,6.62,5.38,12,12,12c6.62,0,12-5.38,12-12C24,5.38,18.62,0,12,0z M12,22C6.49,22,2,17.51,2,12 C2,6.49,6.49,2,12,2c5.51,0,10,4.49,10,10C22,17.51,17.51,22,12,22z M20,11v2h-7v7h-2v-7H4v-2h7V4h2v7H20z"></path> </g></svg>
+    `,
+  lessCircle: `
+    <svg fill="#ff0000" height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" stroke="#ff0000" stroke-width="0.00024000000000000003">
+  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+  <g id="SVGRepo_iconCarrier">
+    <path d="M12,0C5.38,0,0,5.38,0,12c0,6.62,5.38,12,12,12c6.62,0,12-5.38,12-12C24,5.38,18.62,0,12,0z M12,22C6.49,22,2,17.51,2,12 C2,6.49,6.49,2,12,2c5.51,0,10,4.49,10,10C22,17.51,17.51,22,12,22z M20,11v2H4v-2H20z"></path>
+  </g>
+</svg>
+  `,
 }

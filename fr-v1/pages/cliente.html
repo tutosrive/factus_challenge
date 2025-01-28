@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enviamos</title>
+    <link rel="stylesheet" href="/resources/css/styles.css" />
+    <script defer type="module" src="/resources/js/index.mjs"></script>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6SHNGN7R4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-R6SHNGN7R4');
+    </script>
+
+</head>
+
+<body class="d-flex flex-column vh-75 bg-dark" data-bs-theme="light">
+    <header class="fixed-top">
+        <nav id="main-menu" class="navbar navbar-expand-sm card-blur">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/index.html"><img class="logo-header" id="homeImg"
+                        src="/resources/assets/images/factus-logo.png" alt="logo" width="50px"
+                        onclick="window.location.href = '/index.html'" /></a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/index.html" id="link-home">Inicio
+                                <span class="visually-hidden"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./factus.html">Factus</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./factusget.html">Ver Facturas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./about.html">Acerca de...</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="flex-shrink-0 pt-5 mt-5"></main>
+
+    <footer class="fixed-bottom">
+        <div class="container-fluid bg-dark">
+            <p class="text-center mb-0 py-2 card-blur">© 2025 Sistema de FACTUS - SRM-TRG</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -3,14 +3,14 @@ import querys_route from './routes/querys.routes.js';
 import morgan from 'morgan';
 import factura_route from './routes/factura.routes.js';
 import token from './auth/token.js';
+import page_route from './routes/page.routes.js';
 
 // Principal app
 const app = express();
 const port = process.env.PORT || 4500;
 
-// Generar token
+// Generar token de acceso
 token();
-
 // Escuchar puerto (localhost:4500)
 app.listen(port, () => {
   console.log('Running server in port: ', port);
@@ -29,4 +29,4 @@ app.use(express.json());
 // "Debug", mostrar solicitudes realizadas
 app.use(morgan('dev'));
 
-app.use([querys_route, factura_route]);
+app.use([querys_route, factura_route, page_route]);

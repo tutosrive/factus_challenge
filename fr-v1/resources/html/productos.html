@@ -1,0 +1,90 @@
+<form id="form-productos">
+  <fieldset>
+    <div class="row mx-1 my-0">
+      <div class="my-0 d-flex">
+        <div class="col-6 me-3">
+          <div class="form-group">
+            <label for="name" class="form-label my-0">Nombre del producto</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Lentes" />
+          </div>
+        </div>
+        <div class="col">
+          <label for="disponible" class="form-label my-0">Precio Neto</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" id="price" name="price" step="50" placeholder="4273450">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cantidad, tasa de descuento, porcentaje de descuento, tributo -->
+    <div class="row mx-1 mt-2">
+      <!-- Cantidad de productos -->
+      <div class="col">
+        <div class="form-group">
+          <label for="amount" class="form-label my-0">Cantidad (productos)</label>
+          <input type="number" class="form-control" id="amount" name="amount" value="1.0" min="0.1" max="2.59"
+            step="0.01" required />
+        </div>
+      </div>
+      <!-- Tasa de descuento -->
+      <div class="col">
+        <div class="form-group"></div>
+        <label for="tax-rate" class="form-label my-0">Tasa descuento</label>
+        <input type="number" class="form-control" id="tax-rate" name="tax-rate" value="1.0" min="0.1" max="2.44"
+          step="0.01" required />
+      </div>
+      <!-- Porcentaje de descuento -->
+      <div class="col">
+        <div class="form-group">
+          <label for="discount-rate" class="form-label my-0">Porcentaje descuento</label>
+          <input type="number" class="form-control" id="discount-rate" name="discount-rate" value="1.0" min="0.1"
+            max="12.19" step="0.01" required />
+        </div>
+      </div>
+      <!-- Tributo -->
+      <div class="col">
+        <div class="form-group">
+          <label for="tribute" class="form-label my-0">Tributo</label>
+          <select class="form-control" name="tribute" id="tribute"></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unidad de medida, código estándar, excluido del IVA -->
+    <div class="row mx-1 mt-2">
+      <!-- Unidad de medida -->
+      <div class="col">
+        <div class="form-group">
+          <label for="measure-id" class="form-label my-0">Unidad de medida</label>
+          <select class="form-control" name="measure-id" id="measure-id"></select>
+        </div>
+      </div>
+      <!-- Código de producto estándar -->
+      <div class="col">
+        <div class="form-group"></div>
+        <label for="standar-code" class="form-label my-0">Código estándar</label>
+        <select class="form-control" name="standar-code" id="standar-code"></select>
+      </div>
+      <!-- ¿Excluido del iva?. Selección -->
+      <div class="col">
+        <div class="form-group">
+          <label for="excluded" class="form-label my-0">¿Excluido del IVA?</label>
+          <select class="form-control" name="excluded" id="excluded"></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasas de retención -->
+    <div class="row mx-1 my-2">
+      <div class="col">
+        <div class="form-floating fs-3">
+          <div class="form-control p-4" id="withholding_tax_rate" name="withholding_tax_rate"></div>
+          <label for="withholding_tax_rate" class="form-label my-0">Tasas de retención</label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>

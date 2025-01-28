@@ -1,51 +1,121 @@
-<!-- 
-    Formulario para la adición y edición de mercancias
-    Note que cada <input> tiene un ID que lo identifica de manera única.
-    Consulte en https://www.w3schools.com/html/html_form_input_types.asp los tipos de cada <input>
-    Consulte también en https://www.w3schools.com/html/html_form_attributes.asp los atributos utlizados aquí
-    https://www.youtube.com/watch?v=hl_Twm8PJec (validaciones)
-    https://lenguajehtml.com/html/validaciones/validaciones-html5/ (validaciones)
-    Con base en este formulario puede implementar los demás que se requieren
- -->
 <form id="form-clientes">
   <fieldset>
-    <!-- IMPORTANTE: no es necesario mostrar el ID de las mercancías, por eso type="hidden"  -->
     <div class="row mx-1 my-0">
-      <div class="col">
-        <div class="form-group">
-          <label for="disponible" class="form-label my-0">ID</label>
-          <input type="text" class="form-control" id="id" name="id" minlength="5" maxlength="15" />
+      <!-- Identificación, tipo, DV -->
+      <div class="row mx-1 d-flex flex-wrap">
+        <!-- Tipo de documento de identificación -->
+        <div class="col-6">
+          <div class="form-group">
+            <label for="tipo-id" class="form-label my-0">Tipo de identificación</label>
+            <select class="form-control" name="tipo-id" id="tipo-id"></select>
+          </div>
+        </div>
+        <!-- Identificación -->
+        <div class="col-4">
+          <div class="form-group">
+            <label for="id" class="form-label my-0">ID</label>
+            <input type="text" class="form-control" id="id" name="id" minlength="7" maxlength="15"
+              placeholder="123456789" required />
+          </div>
+        </div>
+        <!-- Dígito de verificación, sólo si es NIT -->
+        <div class="col-2">
+          <div class="visually-hidden form-group" id="dv-ctn">
+            <label for="dv" class="form-label my-0">DV</label>
+            <select class="form-control" id="dv" name="dv">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div class="col-8">
-        <div class="form-group">
-          <label for="nombre" class="form-label my-0">Nombre</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" minlength="1" maxlength="100" required />
+      <!-- Nombres (De pila, comercial) -->
+      <div class="row mx-1 my-0">
+        <!-- Nombre de pila -->
+        <div class="col">
+          <div class="form-group">
+            <label for="nombre" class="form-label my-0">Nombre completo</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Alan Turing Pérez"
+              minlength="10" maxlength="150" required />
+          </div>
+        </div>
+        <!-- Nombre comercial -->
+        <div class="col-5">
+          <div class="form-group">
+            <label for="trade-name" class="form-label my-0">Nombre comercial</label>
+            <input type="tel" class="form-control" id="trade-name" name="trade-name" placeholder="(Opcional)"
+              minlength="3" maxlength="50" />
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row mx-1 my-0">
-      <div class="col">
+      <!-- Correo -->
+      <div class="row mx-1 my-3">
         <div class="form-group">
-          <label for="direccion" class="form-label my-0">Dirección</label>
-          <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Cra. 22 #45C-64, B. San Jorge" minlength="10" maxlength="150" required />
+          <label for="email" class="form-label my-0">Correo Electrónico</label>
+          <input type="tel" class="form-control" id="email" name="email" placeholder="alanturing@mi_empresa.com"
+            minlength="11" maxlength="150" required />
+        </div>
+      </div>
+      <!-- Dirección - Teléfono -->
+      <div class="row mx-1 my-0">
+        <!-- Dirección -->
+        <div class="col">
+          <div class="form-group">
+            <label for="direccion" class="form-label my-0">Dirección</label>
+            <input type="text" class="form-control" id="direccion" name="direccion"
+              placeholder="Cra. 22 #45C-64, B. San Jorge" minlength="10" maxlength="150" required />
+          </div>
+        </div>
+        <!-- Teléfono -->
+        <div class="col-5">
+          <div class="form-group">
+            <label for="telefono" class="form-label my-0">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Número de teléfono"
+              minlength="10" maxlength="15" required />
+          </div>
         </div>
       </div>
 
-      <div class="col-5">
-        <div class="form-group">
-          <label for="telefono" class="form-label my-0">Teléfono</label>
-          <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Número de teléfono" minlength="10" maxlength="15" required />
+      <!-- Municipio - Tributo -->
+      <div class="row mx-1 my-0">
+        <!-- Municipio -->
+        <div class="col-7">
+          <div class="form-group">
+            <label for="ciudad" class="form-label my-0">Municipio</label>
+            <select class="form-control" id="ciudad" name="ciudad" required></select>
+          </div>
+        </div>
+        <!-- Tributo -->
+        <div class="col">
+          <label for="tribute" class="form-label my-0">Tipo de tributo</label>
+          <select class="form-control" id="tribute" name="tribute"></select>
         </div>
       </div>
-    </div>
-
-    <div class="row mx-1 my-0">
-      <div class="form-group">
-        <label for="ciudad" class="form-label my-0">Ciudad</label>
-        <select class="form-control" id="ciudad" name="ciudad" required></select>
+      <!-- Compañía - Tipo de organización -->
+      <div class="row mx-1 my-0">
+        <!-- Compañía -->
+        <div class="col-7">
+          <div class="form-group">
+            <label for="company" class="form-label my-0">Compañía</label>
+            <input type="tel" class="form-control" id="company" name="company" placeholder="Alian T. S.A.S."
+              minlength="5" maxlength="150" />
+          </div>
+        </div>
+        <!-- Tipo de organización -->
+        <div class="col">
+          <label for="org" class="form-label my-0">Tipo de organización</label>
+          <select class="form-control" id="org" name="org"></select>
+        </div>
       </div>
     </div>
   </fieldset>

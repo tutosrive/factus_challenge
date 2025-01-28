@@ -1,0 +1,29 @@
+<section id="seccion-estados" class="mx-3">
+  <!-- Título de sección -->
+  <header>
+    <h3>Buscar factura</h3>
+  </header>
+  <!-- Formulario para la búsqueda -->
+  <form id="form-factus-get">
+    <fieldset>
+      <div class="row mt-2">
+        <!-- Número de factura -->
+        <div class="col">
+          <div class="form-group">
+            <label for="number-fact" class="form-label text-nowrap">Número de factura</label>
+            <input class="form-control" type="text" name="number-fact" id="number-fact" minlength="13" maxlength="13"
+              placeholder="SETP990008804" required />
+          </div>
+        </div>
+        <!-- Botón de búsqueda -->
+        <div class="col mt-4 pt-2">
+          <button class="btn btn-primary" id="buscar-envio">Buscar Factura</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <!-- Bloque de texto que contendrá la información de la factura -->
+  <div class="mx-1 mt-3">
+    <div class="form-group form-control" id="container-info" style="visibility: hidden"></div>
+  </div>
+</section>

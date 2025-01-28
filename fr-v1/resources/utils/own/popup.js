@@ -88,8 +88,8 @@ export default class Popup extends Dialog {
         this.#buttons.push(document.querySelector(`#${this.id} #_close`))
 
         // Para cada botón retornar una promesa con su nombre
-        this.#buttons.forEach(button => {
-          button.addEventListener('click', e => {
+        this.#buttons.forEach((button) => {
+          button.addEventListener('click', (e) => {
             resolve(e.target.innerText)
           })
         })
