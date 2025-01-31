@@ -1,0 +1,39 @@
+{
+    "observation": "tengo un error 409, aún no lo encuentro...",
+    "payment_method_code": 10,
+    "customer": {
+        "company": "SRM-TRG S.A.S",
+        "trade_name": "SRM-TRG",
+        "names": "Santiago Rivera Marin",
+        "address": "Cll. 22 #45C-45",
+        "email": "tutosrivegamer@srm.com",
+        "phone": "3103362199",
+        "tribute_id": 21,
+        "municipality_id": 1041,
+        "identification": "1109780065",
+        "identification_document_id": 3,
+        "legal_organization_id": 2
+    },
+    "items": [
+        {
+            "code_reference": "F7W1G",
+            "name": "Laptop HP",
+            "quantity": 1,
+            "discount_rate": 11,
+            "price": 1500000,
+            "tax_rate": "19.00",
+            "unit_measure_id": 70,
+            "standard_code_id": 1,
+            "is_excluded": 0,
+            "tribute_id": 1,
+            "withholding_taxes": [
+                {
+                    "code": "06",
+                    "withholding_tax_rate": "7.00"
+                }
+            ]
+        }
+    ],
+    "numbering_range_id": 8,
+    "reference_code": "J2M4V6S3R6"
+}

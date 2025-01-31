@@ -37,10 +37,11 @@ export default class Helpers {
    */
   static async fetchJSON(url, data = {}) {
     if (data instanceof Object && data.body instanceof Object && Object.keys(data.body).length > 0) {
-      data.headers = { 'Content-Type': 'application/json; charset=utf-8' }
+      data.headers = { 'Content-Type': 'application/json' }
       data.body = JSON.stringify(data.body)
+      console.log(data.body)
+      data.maxBodyLength = Infinity
     }
-
     let response
     try {
       response = await fetch(url, data)
@@ -86,7 +87,7 @@ export default class Helpers {
    * @param {Array} data Un array de objetos que contienen objetos
    * @returns Array
    */
-  static flat = data => data.map(v => Helpers.flatten(v))
+  static flat = (data) => data.map((v) => Helpers.flatten(v))
 
   /**
    * Aplana un objeto que contiene otros objetos
@@ -121,7 +122,7 @@ export default class Helpers {
     if (firstOption) {
       options += `<option value="">${firstOption}</option>`
     }
-    items.forEach(item => {
+    items.forEach((item) => {
       if (item[value] == selected) {
         // comprobación débil adrede
         options += `<option value="${item[value]}" selected>${item[text]}</option>`
@@ -140,7 +141,7 @@ export default class Helpers {
   static selectOptionByText(select, text) {
     select = select instanceof Element ? select : document.querySelector(select)
     // buscar el índice de la opción cuyo texto sea igual al del argumento recibido
-    let index = [...select.options].findIndex(option => option.innerText.trim().toLowerCase() === text.trim().toLowerCase())
+    let index = [...select.options].findIndex((option) => option.innerText.trim().toLowerCase() === text.trim().toLowerCase())
     // seleccionar el elemento del indice dado
     select.selectedIndex = index
     return index

@@ -1,0 +1,155 @@
+[
+    // Error 1
+    {
+        "observation": "porque el error?????",
+        "payment_method_code": 10,
+        "customer": {
+            "company": "CAM S.A.S",
+            "trade_name": "",
+            "names": "Camilo Torres",
+            "address": "Cll. 33 #45D-56",
+            "email": "torrestwin@gmail.com",
+            "phone": "321843773954",
+            "tribute_id": 21,
+            "municipality_id": 350,
+            "dv": 7,
+            "identification": "107873435455",
+            "identification_document_id": 6,
+            "legal_organization_id": 2
+        },
+        "items": [
+            {
+                "code_reference": "U7C1P",
+                "name": "Monitor Dell",
+                "quantity": 1,
+                "discount_rate": 20,
+                "price": 2500000,
+                "tax_rate": "19.00",
+                "unit_measure_id": 449,
+                "standard_code_id": 3,
+                "is_excluded": 0,
+                "tribute_id": 1,
+                "withholding_taxes": [
+                    {
+                        "code": "07",
+                        "withholding_tax_rate": "5.00"
+                    }
+                ]
+            }
+        ],
+        "numbering_range_id": 8,
+        "reference_code": "P2M8Q7W1V4"
+    },
+    // Error 2
+    {
+        "observation": "aiudaaaa",
+        "payment_method_code": 10,
+        "customer": {
+            "company": "SRM-TRG S.A.S",
+            "trade_name": "SRM-TRG",
+            "names": "Santiago Rivera Marin",
+            "address": "Cll. 22 #45C-45",
+            "email": "tutosrivegamer@srm.com",
+            "phone": "3103362199",
+            "tribute_id": 21,
+            "municipality_id": 1041,
+            "identification": "1109780065",
+            "identification_document_id": 3,
+            "legal_organization_id": 2
+        },
+        "items": [
+            {
+                "code_reference": "R0C7J",
+                "name": "Mouse Logitech",
+                "quantity": 1,
+                "discount_rate": 8,
+                "price": 300000,
+                "tax_rate": "19.00",
+                "unit_measure_id": 414,
+                "standard_code_id": 1,
+                "is_excluded": 0,
+                "tribute_id": 2,
+                "withholding_taxes": [
+                    {
+                        "code": "07",
+                        "withholding_tax_rate": "9.00"
+                    }
+                ]
+            },
+            {
+                "code_reference": "K3T2T",
+                "name": "Az£car Doble Cero",
+                "quantity": 1,
+                "discount_rate": 6,
+                "price": 450000,
+                "tax_rate": "19.00",
+                "unit_measure_id": 449,
+                "standard_code_id": 1,
+                "is_excluded": 0,
+                "tribute_id": 3,
+                "withholding_taxes": [
+                    {
+                        "code": "05",
+                        "withholding_tax_rate": "2.50"
+                    }
+                ]
+            },
+            {
+                "code_reference": "X8O7Y",
+                "name": "Gaseosa Coca-Cola",
+                "quantity": 4,
+                "discount_rate": 7,
+                "price": 3200000,
+                "tax_rate": "19.00",
+                "unit_measure_id": 512,
+                "standard_code_id": 3,
+                "is_excluded": 0,
+                "tribute_id": 2,
+                "withholding_taxes": [
+                    {
+                        "code": "06",
+                        "withholding_tax_rate": "4.50"
+                    }
+                ]
+            },
+            {
+                "code_reference": "C3C0G",
+                "name": "Pollo de Granja",
+                "quantity": 8,
+                "discount_rate": 14,
+                "price": 29600000,
+                "tax_rate": "19.00",
+                "unit_measure_id": 414,
+                "standard_code_id": 2,
+                "is_excluded": 0,
+                "tribute_id": 3,
+                "withholding_taxes": [
+                    {
+                        "code": "06",
+                        "withholding_tax_rate": "4.00"
+                    }
+                ]
+            },
+            {
+                "code_reference": "U2R2D",
+                "name": "Laptop HP",
+                "quantity": 4,
+                "discount_rate": 11,
+                "price": 6000000,
+                "tax_rate": "19.00",
+                "unit_measure_id": 70,
+                "standard_code_id": 1,
+                "is_excluded": 0,
+                "tribute_id": 1,
+                "withholding_taxes": [
+                    {
+                        "code": "06",
+                        "withholding_tax_rate": "7.00"
+                    }
+                ]
+            }
+        ],
+        "numbering_range_id": 8,
+        "reference_code": "J9X3P5X6M5"
+    }
+]

@@ -73,7 +73,6 @@ export function rd_key(limit = 5) {
   if (key.length > limit) {
     key.slice(0, limit);
   }
-  console.log(`KEY: ${key} => Len: ${key.length}`);
   return key;
 }
 

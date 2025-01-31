@@ -68,6 +68,15 @@ export const update_data = async (req, res) => {
   }
 };
 
-export const dates = async (req, res) => {
-  res.json({ message: 'Hoña, qué más $("&#/%%#' });
+export const delete_data = async (req, res) => {
+  try {
+    const { table, property, value } = req.params;
+    const { rows, rowCount } = await db.query(`DELETE FROM ${table} WHERE ${property} = '${value}' RETURNING *`);
+    if (rowCount === 0) {
+      return res.status(404).json({ status: res.statusCode, message: 'No se eliminaron los datos' });
+    }
+    res.json({ status: 200, message: 'Datos eliminados', deleted: rows[0] });
+  } catch (e) {
+    res.status(500).json({ status: res.statusCode, message: 'Error al eliminar los datos', error: e });
+  }
 };

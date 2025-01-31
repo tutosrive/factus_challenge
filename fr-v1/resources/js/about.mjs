@@ -29,6 +29,8 @@ export default class About {
     const emailP = document.querySelector('#emailParagraph')
     // Todos los "links" de proyectos
     const projects = document.querySelectorAll('* #projects > div > a')
+    const about_section = document.querySelectorAll('#about-me a')
+    const laboral = document.querySelectorAll('#laboral-expreience a')
     const contactme = document.querySelectorAll('#contactme > *')
 
     // Íconos de contacto (Redes)
@@ -54,6 +56,19 @@ export default class About {
 
     // Es un "link expandido", debo cancelar su comportamiento por defecto antes de redirigir
     projects.forEach((project) => {
+      project.addEventListener('click', (e) => {
+        e.preventDefault()
+        About.#popover(e.target.href)
+      })
+    })
+
+    about_section.forEach((project) => {
+      project.addEventListener('click', (e) => {
+        e.preventDefault()
+        About.#popover(e.target.href)
+      })
+    })
+    laboral.forEach((project) => {
       project.addEventListener('click', (e) => {
         e.preventDefault()
         About.#popover(e.target.href)

@@ -15,24 +15,25 @@ export default class Factus {
 
   static async init() {
     try {
+      // Precargar el formulario para agregar facturas
       Factus.#form = await Helpers.fetchText('/resources/html/factus.html')
+      // Solicitar los medios de pago disponibles (en la base de datos POSTGRES)
       let response = await Helpers.fetchJSON(`${urlAPI}/get-data/payment_method`)
 
+      // Precargar los métodos de pago
       Factus.#pay_method_option = Helpers.toOptionList({
         items: response.data,
         value: 'id',
         text: 'name',
         firstOption: 'Seleccione un método de pago',
       })
-
+      Toast.show({ message: 'Cargando datos...', duration: 1000 })
       // Intentar cargar los datos de los datos de los clientes
       response = await Helpers.fetchJSON(`${urlAPI}/factura`)
       // response = await Helpers.fetchJSON('/resources/js/facturas_all.json')
       if (!response) {
         throw new Error(response.message)
       }
-
-      Toast.show({ message: 'Cargando datos...', duration: 1000 })
 
       // Agregar al <main> index.html el contenedor de la tabla
       document.querySelector('main').innerHTML = `
@@ -47,6 +48,7 @@ export default class Factus {
         progressiveLoad: 'scroll',
         layout: 'fitColumns',
         columns: [
+          { formatter: deleteRowButton, width: 40, hozAlign: 'center', cellClick: Factus.#deleteRowClick },
           { title: 'ID', field: 'id', hozAlign: 'center', width: 90 },
           { title: 'ESTADO ', field: 'status', hozAlign: 'center', width: 100, formatter: Factus.#status_formatter },
           { title: 'DOCUMENTO', field: 'document.name', hozAlign: 'left', width: 250 },
@@ -60,7 +62,7 @@ export default class Factus {
         responsiveLayout: false, // activado el scroll horizontal, también: ['hide'|true|false]
         initialSort: [
           // establecer el ordenamiento inicial de los datos
-          { column: 'id', dir: 'asc' },
+          { column: 'id', dir: 'desc' },
         ],
         columnDefaults: {
           tooltip: true, //show tool tips on cells
@@ -88,12 +90,15 @@ export default class Factus {
    */
   static #date_format(cell = null, load = false, value = null) {
     if (cell !== null) {
-      const value = cell.getValue()
-      const dt = DateTime.fromFormat(value, 'dd-MM-yyyy hh:mm:ss a').setLocale('es-419')
-
-      return dt.toFormat("hh:mm a, 'del' cccc dd 'de' LLLL 'de' yyyy")
+      if (cell.getValue() !== null) {
+        const value = cell.getValue()
+        const dt = DateTime.fromFormat(value, 'dd-MM-yyyy hh:mm:ss a').setLocale('es-419')
+        return dt.toFormat("hh:mm a, 'del' cccc dd 'de' LLLL 'de' yyyy")
+      } else {
+        return '----'
+      }
     } else if (load === true) {
-      return DateTime.fromFormat(value).setLocale('es-419').toFormat('dd-MM-yyyy hh:mm:ss a')
+      return val !== null ? DateTime.fromFormat(value).setLocale('es-419').toFormat('dd-MM-yyyy hh:mm:ss a') : '----'
     }
   }
 
@@ -136,20 +141,24 @@ export default class Factus {
 
       // Crear objeto con los datos del formulario
       const body = await Factus.#getFormData()
-      console.log(body)
-
+      Toast.show({ message: 'validando información...' })
+      if (body.items === null || body.items.length === 0 || !body.items) {
+        Toast.show({ message: `Debe agregar productos presionando el botón ${addProductButton}`, mode: 'warning' })
+        return false
+      }
       // Realizar solicitud de registro a la API
       let response = await Helpers.fetchJSON(`${urlAPI}/factura`, {
         method: 'POST',
         body,
       })
-
-      console.log(response)
-
       // Verificar respuesta de la API
       if (response.status === 200) {
-        Toast.show({ message: 'Cliente creado correctamente' })
-        Factus.#table.addRow(response.data)
+        Toast.show({ message: 'Factura creada correctamente', mode: 'success' })
+        // Recargar página después de 2 segundos, y así ver las nuevas facturas...
+        let timeout = setTimeout(() => {
+          window.location.reload()
+          timeout = null
+        }, 2000)
         Factus.#modal.remove()
       } else {
         Toast.show({ message: 'No se pudo agregar el registro', mode: 'danger', error: response })
@@ -164,7 +173,6 @@ export default class Factus {
    */
   static #editRowClick = async (e, cell) => {
     Factus.#currentOption = 'edit'
-    console.log(cell.getRow().getData())
     Factus.#modal = new Modal({
       modal: false,
       classes: Customs.classesModal, // En customs.mjs están las clases (Se repiten habitualmente)
@@ -224,6 +232,29 @@ export default class Factus {
     Factus.#del_modal = new Modal({
       modal: false,
       classes: Customs.classesModal, // En customs.mjs están las clases (Se repiten habitualmente)
+      title: '<h5>Eliminar factura</h5>',
+      content: `<span class="text-back dark:text-gray-300">
+                  Confirme la eliminación de la factura: <br>
+                  ${cell.getRow().getData().id} - ${cell.getRow().getData().number}<br>
+                  Cliente API: ${cell.getRow().getData().api_client_name}<br>
+                  Cliente Factura: ${cell.getRow().getData().identification}<br>
+                </span>`,
+      buttons: [
+        { caption: deleteButton, classes: 'btn btn-primary me-2', action: () => Factus.#delete(cell) },
+        { caption: cancelButton, classes: 'btn btn-secondary', action: () => Factus.#del_modal.remove() },
+      ],
+    })
+    Factus.#del_modal.show()
+  }
+  /**
+   * Disponer diálogo con la información del cliente a eliminar
+   */
+  static #deleteProduct = async (e, cell) => {
+    e.preventDefault()
+    Factus.#currentOption = 'delete'
+    Factus.#del_modal = new Modal({
+      modal: false,
+      classes: Customs.classesModal, // En customs.mjs están las clases (Se repiten habitualmente)
       title: '<h5>Eliminar producto</h5>',
       content: `<span class="text-back dark:text-gray-300">
                   Confirme la eliminación del producto: <br>
@@ -232,7 +263,7 @@ export default class Factus {
                   Cantidad: ${cell.getRow().getData().quantity}<br>
                 </span>`,
       buttons: [
-        { caption: deleteButton, classes: 'btn btn-primary me-2', action: () => Factus.#delete(cell) },
+        { caption: deleteButton, classes: 'btn btn-primary me-2', action: () => Factus.#delete_product(cell) },
         { caption: cancelButton, classes: 'btn btn-secondary', action: () => Factus.#del_modal.remove() },
       ],
     })
@@ -245,11 +276,35 @@ export default class Factus {
    */
   static async #delete(cell) {
     try {
-      Toast.show({ message: 'Producto eliminado exitosamente' })
+      const data = cell.getRow().getData()
+
+      if (data.status === 0) {
+        const req = await Helpers.fetchJSON(`${urlAPI}/factura/${data.reference_code}`, {
+          method: 'DELETE',
+        })
+
+        if (req.status === 200) {
+          Toast.show({ message: 'Factura eliminado exitosamente', mode: 'success' })
+          cell.getRow().delete()
+          Factus.#del_modal.remove()
+        } else {
+          Toast.show({ message: 'Hubo un error al eliminar la factura', mode: 'danger', error: req })
+        }
+      } else {
+        Toast.show({ message: 'La factura ha sido enviada a la DIAN, <span class="text-danger">no se puede eliminar</span>', mode: 'warning' })
+      }
+    } catch (e) {
+      Toast.show({ message: 'No se pudo eliminar el cliente', mode: 'danger', error: e })
+    }
+  }
+
+  static async #delete_product(cell) {
+    try {
+      Toast.show({ message: 'Producto eliminado exitosamente', mode: 'success' })
       cell.getRow().delete()
       Factus.#del_modal.remove()
     } catch (e) {
-      Toast.show({ message: 'No se pudo eliminar el cliente', mode: 'danger', error: e })
+      Toast.show({ message: 'No se pudo eliminar el producto', mode: 'danger', error: e })
     }
   }
 
@@ -260,7 +315,6 @@ export default class Factus {
     select_pay_method.innerHTML = Factus.#pay_method_option
 
     if (Factus.#currentOption === 'edit') {
-      console.log(rowData.ciudad)
       document.querySelector(`#${idModal} #id`).value = rowData.id
       document.querySelector(`#${idModal} #nombre`).value = rowData.nombre
       document.querySelector(`#${idModal} #direccion`).value = rowData.direccion
@@ -280,13 +334,17 @@ export default class Factus {
     Factus.#tab_products(idModal)
   }
 
+  /**
+   * Tabla de productos
+   * @param {*} idModal
+   */
   static async #tab_products(idModal) {
     Factus.#products_table = new Tabulator(`#${idModal} #ctn-products`, {
       height: '40vh',
       progressiveLoad: 'scroll',
       layout: 'fitColumns',
       columns: [
-        { formatter: deleteRowButton, width: 40, hozAlign: 'center', cellClick: Factus.#deleteRowClick },
+        { formatter: deleteRowButton, width: 40, hozAlign: 'center', cellClick: Factus.#deleteProduct },
         { title: 'ID', field: 'code_reference', hozAlign: 'center', width: 90 },
         { title: 'NOMBRE', field: 'name', hozAlign: 'left', width: 90 },
         { title: 'PRECIO ', field: 'price', hozAlign: 'center', width: 100, formatter: 'money' },
@@ -302,7 +360,7 @@ export default class Factus {
       responsiveLayout: false, // activado el scroll horizontal, también: ['hide'|true|false]
       initialSort: [
         // establecer el ordenamiento inicial de los datos
-        { column: 'id', dir: 'asc' },
+        { column: 'code_reference', dir: 'asc' },
       ],
       columnDefaults: {
         tooltip: true, //show tool tips on cells
@@ -325,7 +383,7 @@ export default class Factus {
 
   /**
    * Agregar productos a la tabla de productos
-   * @param {*} e
+   * @param {Event} e Evento de botón
    */
   static #addProduct(e) {
     e.preventDefault()
@@ -376,13 +434,16 @@ export default class Factus {
       // Añadir cantidades y precios
       product.data[0].quantity = quantity
       product.data[0].price *= quantity
-      console.log(product.data)
       Factus.#products_table.addRow(product.data)
     })
 
     document.querySelector(`#${pop.id} #_close`).addEventListener('click', (e) => Customs.closePopover(pop))
   }
 
+  /**
+   * Agregar los productos al seleccionador de...
+   * @param {String} idPop ID del popover
+   */
   static async #add_product_list_to_select(idPop) {
     const select = document.querySelector(`#${idPop} #product`)
     const list_products = Helpers.toOptionList({
@@ -411,22 +472,21 @@ export default class Factus {
    * @returns Un objeto con los datos del usuario
    */
   static async #getFormData() {
-    // Guardar el índice seleccionado en el <select> ciudad
     const idModal = Factus.#modal.id
     // const index = cities.selectedIndex
     const customer_id = document.querySelector(`#${idModal} #cliente`).value
+    // Obtener los datos del cliente por medio de su ID
     const res = await Helpers.fetchJSON(`${urlAPI}/get-join/`, {
       method: 'POST',
       body: { query: `SELECT * FROM customer WHERE id = '${customer_id}'` },
     })
 
+    // Verificar si tiene la propiedad...
     if (res.data[0].hasOwnProperty('verification_digit')) {
       if (res.data[0].verification_digit === null) delete res.data[0].verification_digit
       else res.data[0].dv = res.data[0].verification_digit
       delete res.data[0].verification_digit
     }
-    console.log(res)
-
     res.data[0].identification = res.data[0].id
     res.data[0].identification_document_id = res.data[0].type_id
     res.data[0].legal_organization_id = res.data[0].id_org
@@ -440,69 +500,6 @@ export default class Factus {
       customer: res.data[0],
       items: Factus.#products_table.getData(),
     }
-
-    // console.log(data)
-
     return data
   }
-
-  /*
-  const body = {
-    // observation: 'Aún estarán en live? en tiktok?',
-    // payment_method_code: 10, // metodo de pago se consume por tabla, en documentacion
-    customer: {
-      identification: '123456789',
-      dv: 3, // Digito de verificacion. se envia si es nit
-      company: '',
-      trade_name: '',
-      names: 'Tutos Sirve*',
-      address: 'calle 1 # 2-68',
-      email: 'tutosirve@enigmasas.com',
-      phone: '1234567890',
-      legal_organization_id: 2, //TIpo de organizacion, persona natural o juridica. se consume de tabla
-      tribute_id: 21, // Si aplica o no aplica iva. se consume de tabla
-      identification_document_id: 3, // Tipo de identificacion se consume de tabla
-      municipality_id: 980, // municipio del cliente, se consume del endpoint municipios
-    },
-    items: [
-      {
-        code_reference: '12345',
-        name: 'Factus versión PRO',
-        quantity: 1, //requerido
-        discount_rate: 20, // valor del porcentatje de descuento
-        price: 5000000,
-        tax_rate: '19.00', // valor del descuento aplicado
-        unit_measure_id: 70, // se consume del endpoint unidad de medida
-        standard_code_id: 1, // codigo para productos o serviciois se consume de tabla
-        is_excluded: 0, // excluido de iva o no
-        tribute_id: 1, // Tributto aplicado, se consume de endpoint tributo productos
-        withholding_taxes: [
-          // array de las tasas de retencion se cosume del endpoint tribuos
-          {
-            code: '06',
-            withholding_tax_rate: '7.00',
-          },
-          {
-            code: '05',
-            withholding_tax_rate: '15.00',
-          },
-        ],
-      },
-      {
-        code_reference: '12345',
-        name: 'producto de prueba 2',
-        quantity: 1, // requerido
-        discount: 0, //requerido, si no tiene descuento debe ir en 0
-        discount_rate: 0,
-        price: 50000,
-        tax_rate: '5.00',
-        unit_measure_id: 70, // requerido por defecto 70
-        standard_code_id: 1,
-        is_excluded: 0,
-        tribute_id: 1,
-        withholding_taxes: [],
-      },
-    ],
-  };
-  */
 }

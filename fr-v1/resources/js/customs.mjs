@@ -12,7 +12,7 @@ export function toastBeforeAddRecord(msg = null, just = false) {
   } else {
     message = `${span} antes de presionar el botón <button class="btn btn-primary">${addButton}</button>`
   }
-  Toast.show({ message, mode: 'warning', duration: 5000 })
+  Toast.show({ message, mode: 'warning', duration: 2000 })
 }
 
 /**

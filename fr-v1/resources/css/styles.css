@@ -1,13 +1,13 @@
 /* @import '../utils/tabulator-6.3/css/tabulator.min.css'; */
-@import "../utils/tabulator-6.3/css/tabulator.css";
+@import '../utils/tabulator-6.3/css/tabulator.css';
 
 /* 
 En ../utils/bootstrap-5.3.3/css, además de flatly, encuentra otros temas como cerulean, cosmo, cyborg, ...  
 Use ../utils/bootstrap-5.3.3/css/TEMA/bootstrap.min.css, siendo TEMA el nombre de la carpeta correspondiente al tema
 */
-@import "../utils/bootstrap-5.3.3/css/vapor/bootstrap.min.css";
-@import "toast.css";
-@import "./home.css";
+@import '../utils/bootstrap-5.3.3/css/vapor/bootstrap.min.css';
+@import 'toast.css';
+@import './home.css';
 
 a {
   text-decoration: none;
@@ -72,4 +72,18 @@ html {
   /* Barras de Scroll */
   scrollbar-width: thin;
   scrollbar-color: #6900be #040116;
+}
+
+.ctn_download_fact {
+  position: absolute;
+  top: 35vh;
+  /* bottom: 28vh; */
+  right: 3vw;
+  /* opacity: 50%; */
+  z-index: 1;
+}
+
+.btn_download_fact {
+  background: none;
+  border: none;
 }

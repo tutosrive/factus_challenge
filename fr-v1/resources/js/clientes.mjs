@@ -19,18 +19,23 @@ export default class Clientes {
 
   static async init() {
     try {
+      // Precargar formulario de clientes
       Clientes.#form = await Helpers.fetchText('/resources/html/clientes.html')
-      // let response = await Helpers.fetchJSON('/resources/assets/ciudades.json')
+      // " " municipios
       Clientes.#municipality = await Helpers.fetchJSON(`${urlAPI}/get-data/municipality`)
+      // " " tipos de identificación (NIT, Cédula de ciudadnía, e.t.c.)
       Clientes.#type_id = await Helpers.fetchJSON(`${urlAPI}/get-data/identification_document`)
+      // " " Tributos de cliente
       Clientes.#tribute_id = await Helpers.fetchJSON(`${urlAPI}/get-data/customer_tribute`)
+      // " " Tipos de organización (Persona natural || Jurídica)
       Clientes.#id_org = await Helpers.fetchJSON(`${urlAPI}/get-data/legal_organization`)
 
+      // Crear String (con formato HTML) con la lista de <option> para cada <select>
       Clientes.#cities = Helpers.toOptionList({
         items: Clientes.#municipality.data,
         value: 'id',
         text: 'name',
-        firstOption: 'Seleccione una ciudad',
+        firstOption: 'Seleccione un municipio',
       })
       Clientes.#id_org_option = Helpers.toOptionList({
         items: Clientes.#id_org.data,
@@ -51,13 +56,12 @@ export default class Clientes {
         firstOption: 'Seleccione el tipo de identificación',
       })
 
+      Toast.show({ message: 'Cargando datos...', duration: 1000 })
       // Intentar cargar los datos de los datos de los clientes
       let response = await Helpers.fetchJSON(`${urlAPI}/get-data/customer`)
       if (response.status !== 200) {
         throw new Error(response.message)
       }
-
-      Toast.show({ message: 'Cargando datos...', duration: 1000 })
 
       document.querySelector('main').innerHTML = `
       <h2 class="my-0 mx-4">Clientes</h2>
@@ -105,7 +109,6 @@ export default class Clientes {
     } catch (e) {
       Toast.show({ title: 'Clientes', message: 'Falló la carga de la información', mode: 'danger', error: e })
     }
-
     return this
   }
 
@@ -158,6 +161,7 @@ export default class Clientes {
    */
   static #municipality_format(cell = null, id = null) {
     const val = cell !== null ? cell.getValue() : id
+    // Buscar el municipio correspondiente
     const municipality = Clientes.#municipality.data.find((mun) => mun.id === val)
     return municipality.name
   }
@@ -182,6 +186,9 @@ export default class Clientes {
     Clientes.#modal.show()
   }
 
+  /**
+   * Agregar cliente
+   */
   static async #add() {
     try {
       // Validar formulario
@@ -192,8 +199,7 @@ export default class Clientes {
 
       // Crear objeto con los datos del formulario
       const body = Clientes.#getFormData()
-      console.log(body)
-
+      Toast.show({ message: 'Validando información...' })
       // Realizar solicitud de registro a la API
       let response = await Helpers.fetchJSON(`${urlAPI}/add-data/customer`, {
         method: 'POST',
@@ -202,7 +208,8 @@ export default class Clientes {
 
       // // Verificar respuesta de la API
       if (response.status === 200) {
-        Toast.show({ message: 'Cliente creado correctamente' })
+        Toast.show({ message: 'Cliente creado correctamente', mode: 'success' })
+        // Agregar fila a la tabla
         Clientes.#table.addRow(response.data)
         Clientes.#modal.remove()
       } else {
@@ -244,7 +251,7 @@ export default class Clientes {
 
       // Obtener los datos del formulario
       const body = Clientes.#getFormData()
-
+      Toast.show({ message: 'Validando información...' })
       // Crear ruta para la solicitud
       const url = `${urlAPI}/update-data/customer/id/${cell.getRow().getData().id}`
 
@@ -254,7 +261,7 @@ export default class Clientes {
       })
 
       if (response.status === 200) {
-        Toast.show({ message: 'Cliente actualizado correctamente' })
+        Toast.show({ message: 'Cliente actualizado correctamente', mode: 'success' })
         // actualizar fila correspondiente con la información actualizada
         cell.getRow().update(response.updated_fields)
         Clientes.#modal.remove()
@@ -271,17 +278,19 @@ export default class Clientes {
    */
   static #deleteRowClick = async (e, cell) => {
     Clientes.#currentOption = 'delete'
-    console.log(cell.getRow().getData())
     Clientes.#modal = new Modal({
       modal: false,
       classes: Customs.classesModal, // En customs.mjs están las clases (Se repiten habitualmente)
       title: '<h5>Eliminación de clientes</h5>',
       content: `<span class="text-back dark:text-gray-300">
                   Confirme la eliminación del cliente: <br>
-                  ${cell.getRow().getData().id} - ${cell.getRow().getData().nombre}<br>
-                  Ciudad: ${cell.getRow().getData().ciudad}<br>
-                  Teléfono: ${cell.getRow().getData().telefono}<br>
-                  Dirección: ${cell.getRow().getData().direccion}<br>
+                  ${cell.getRow().getData().id} - ${cell.getRow().getData().names}<br>
+                  Municipio: ${cell.getRow().getData().municipality_id}<br>
+                  Tipo de identificación: ${cell.getRow().getData().type_id}<br>
+                  E-Mail: ${cell.getRow().getData().email}<br>
+                  Teléfono: ${cell.getRow().getData().phone}<br>
+                  Dirección: ${cell.getRow().getData().address}<br>
+                  Tipo de organización: ${cell.getRow().getData().id_org}<br>
                 </span>`,
       buttons: [
         { caption: deleteButton, classes: 'btn btn-primary me-2', action: () => Clientes.#delete(cell) },
@@ -291,16 +300,19 @@ export default class Clientes {
     Clientes.#modal.show()
   }
 
+  /**
+   * Eliminar cliente
+   * @param {*} cell Objeto celda de tabulator
+   */
   static async #delete(cell) {
     try {
-      const url = `${urlAPI}/cliente/${cell.getRow().getData().id}`
-
+      const url = `${urlAPI}/delete/customer/id/${cell.getRow().getData().id}`
       let response = await Helpers.fetchJSON(url, {
         method: 'DELETE',
       })
 
       if (response.status === 200) {
-        Toast.show({ message: 'Cliente eliminado exitosamente' })
+        Toast.show({ message: 'Cliente eliminado exitosamente', mode: 'success' })
         cell.getRow().delete()
         Clientes.#modal.remove()
       } else {
@@ -311,6 +323,11 @@ export default class Clientes {
     }
   }
 
+  /**
+   * Cargar datos dentro del formulario
+   * @param {String} idModal ID del diálogo (Modal)
+   * @param {Object} rowData Datos de la fila actual
+   */
   static #displayDataOnForm(idModal, rowData) {
     const selectCities = document.querySelector(`#${idModal} #ciudad`)
     const selectIdOrg = document.querySelector(`#${idModal} #org`)
@@ -318,11 +335,13 @@ export default class Clientes {
     const selectIdType = document.querySelector(`#${idModal} #tipo-id`)
     Clientes.#verify_type_id(selectIdType)
 
+    // Cargar opciones disponibles dentro de los <select>
     selectCities.innerHTML = Clientes.#cities
     selectIdOrg.innerHTML = Clientes.#id_org_option
     selectIdTribute.innerHTML = Clientes.#tribute_id_option
     selectIdType.innerHTML = Clientes.#type_id_option
 
+    // cargar datos dentro del formulario (Cuando se edita)
     if (Clientes.#currentOption === 'edit') {
       document.querySelector(`#${idModal} #id`).value = rowData.id
       document.querySelector(`#${idModal} #dv`).value = rowData.verification_digit
@@ -335,7 +354,6 @@ export default class Clientes {
       document.querySelector(`#${idModal} #org`).value = rowData.id_org
       document.querySelector(`#${idModal} #tribute`).value = rowData.tribute_id
       document.querySelector(`#${idModal} #trade-name`).value = rowData.trade_name
-      // document.querySelector(`#${idModal} #ciudad`).value = rowData.municipality_id
 
       Helpers.selectOptionByText(selectCities, Clientes.#municipality_format(null, rowData.municipality_id))
     }
@@ -348,7 +366,6 @@ export default class Clientes {
   static #verify_type_id(element) {
     const ctn_dv = document.querySelector('#dv-ctn')
     element.addEventListener('change', (e) => {
-      console.log(`Ha cambiado => ${element.value}`)
       // NIT
       if (element.value === '6') {
         ctn_dv.classList.remove('visually-hidden')
@@ -367,7 +384,6 @@ export default class Clientes {
    * @returns Un objeto con los datos del usuario
    */
   static #getFormData() {
-    // Guardar el índice seleccionado en el <select> ciudad
     const idModal = Clientes.#modal.id
     const cities = document.querySelector(`#${idModal} #ciudad`)
     const index = cities.selectedIndex
@@ -386,7 +402,7 @@ export default class Clientes {
       trade_name: document.querySelector(`#${idModal} #trade-name`).value,
       municipality_id: parseInt(cities.options[index].value),
     }
-
+    // Si cliente se identifica con NIT
     if (ctn_dv.required === true) data.verification_digit = parseInt(document.querySelector(`#${idModal} #dv`).value)
 
     return data
