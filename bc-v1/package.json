@@ -5,6 +5,7 @@
   "main": "./src/main.js",
   "type": "module",
   "scripts": {
+    "start": "node ./src/main.js",
     "test": "node --env-file .env --watch ./src/helpers/helpers.mjs",
     "dev": "node --env-file .env --watch ./src/main.js",
     "fact": "node --env-file .env ./src/controllers/factura.controller.js",
