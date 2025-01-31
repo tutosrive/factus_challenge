@@ -1,3 +1,4 @@
+.prettierrc
+factus_response
 node_modules
 .env
-response
