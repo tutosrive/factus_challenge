@@ -6,7 +6,7 @@ let id_interval;
 /**
  * Generar Token cada 55 minutos
  */
-export async function token() {
+export default async function token() {
   const query = () => {
     const data = {
       client_id: process.env.client_id,
