@@ -1,5 +1,7 @@
 # Reto [Factus](https://developers.factus.com.co/) - Propuesto por "[Halltec](https://halltec.co/)"
-
+---
+**[Vídeo Del Reto Factus](https://youtu.be/PI5bEsuY1aA?si=FPCjpjvUSzby0OZ9)**
+---
 ¡Hola buenas!, mi nombre real es **[Santiago Rivera Marin](https://www.instagram.com/santiago.riveramarin.524/)**, tengo 19 años de edad, y este repositorio almacena el **Reto Factus** propuesto por el equipo de la _empresa_ "**[Halltec](https://halltec.co/)**".
 
 El equipo de "**[Halltec](https://halltec.co/)**", tiene una **[API](https://www.ibm.com/mx-es/topics/api)** de **[Facturación Electrónica](https://micrositios.dian.gov.co/sistema-de-facturacion-electronica/factura-electronica/)**, la cuál está programada en **[PHP](https://www.php.net/manual/es/intro-whatis.php)**, sí, **PHP** aún existe y es poderoso, lo digo porque los tiempos de respuesta de esta **[API](https://www.ibm.com/mx-es/topics/api)** de "**[Halltec](https://halltec.co/)**" son muy rápidos.
