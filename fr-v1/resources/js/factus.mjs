@@ -73,7 +73,7 @@ export default class Factus {
 
       Factus.#table.on('tableBuilt', () => document.querySelectorAll('#add-row').forEach((e) => e.addEventListener('click', Factus.#addRow)))
       // Mostrar información sobre como usar el crud básico
-      Customs.showInfoAboutUse('clientes')
+      Customs.showInfoAboutUse('facturas')
     } catch (e) {
       Toast.show({ title: 'Factus', message: 'Falló la carga de la información', mode: 'danger', error: e })
     }
