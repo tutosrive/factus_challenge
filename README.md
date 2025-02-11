@@ -2,6 +2,9 @@
 ---
 **[Vídeo Del Reto Factus](https://youtu.be/PI5bEsuY1aA?si=FPCjpjvUSzby0OZ9)**
 ---
+## Certificado
+![certificado](https://github.com/user-attachments/assets/0e11b96f-d836-4ebe-9737-384196a254c9)
+
 ¡Hola buenas!, mi nombre real es **[Santiago Rivera Marin](https://www.instagram.com/santiago.riveramarin.524/)**, tengo 19 años de edad, y este repositorio almacena el **Reto Factus** propuesto por el equipo de la _empresa_ "**[Halltec](https://halltec.co/)**".
 
 El equipo de "**[Halltec](https://halltec.co/)**", tiene una **[API](https://www.ibm.com/mx-es/topics/api)** de **[Facturación Electrónica](https://micrositios.dian.gov.co/sistema-de-facturacion-electronica/factura-electronica/)**, la cuál está programada en **[PHP](https://www.php.net/manual/es/intro-whatis.php)**, sí, **PHP** aún existe y es poderoso, lo digo porque los tiempos de respuesta de esta **[API](https://www.ibm.com/mx-es/topics/api)** de "**[Halltec](https://halltec.co/)**" son muy rápidos.
