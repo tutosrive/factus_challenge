@@ -7,7 +7,7 @@ let id_interval;
  * Generar Token cada 55 minutos
  */
 export default async function token() {
-  const query = () => {
+  const query = async () => {
     const data = {
       client_id: process.env.client_id,
       client_secret: process.env.client_secret,
@@ -35,16 +35,15 @@ export default async function token() {
       },
       data: stringify(data),
     };
-    axios(config)
-      .then((res) => {
-        process.env.refresh_token = res.data.refresh_token;
-        process.env.access_token = res.data.access_token;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    try {
+      const res = await axios(config);
+      process.env.refresh_token = res.data.refresh_token;
+      process.env.access_token = res.data.access_token;
+    } catch (e) {
+      console.log(e);
+    }
   };
-  query();
+  await query();
   id_interval = setInterval(() => {
     query();
   }, 3300000); // cada 55 minutos se genera un nuevo token
