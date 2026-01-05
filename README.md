@@ -1,11 +1,4 @@
 # Reto [Factus](https://developers.factus.com.co/) - Propuesto por "[Halltec](https://halltec.co/)"
----
-
-<div align="center">
-  <a href="https://youtu.be/doaI10YAwKg?si=zYEz1kIKp4AsnSXA">
-    <img src="https://github.com/user-attachments/assets/d2322493-6904-4838-85b7-83405a50b57a">
-  </a>
-</div>
 
 ---
 
@@ -18,6 +11,13 @@
 </a>
 </div>
 
+---
+
+<div align="center">
+  <a href="https://youtu.be/doaI10YAwKg?si=zYEz1kIKp4AsnSXA">
+    <img src="https://github.com/user-attachments/assets/d2322493-6904-4838-85b7-83405a50b57a">
+  </a>
+</div>
 ---
 ## Certificado
 ![certificado](https://github.com/user-attachments/assets/0e11b96f-d836-4ebe-9737-384196a254c9)
