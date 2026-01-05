@@ -1,19 +1,21 @@
 # Reto [Factus](https://developers.factus.com.co/) - Propuesto por "[Halltec](https://halltec.co/)"
 ---
-**[Vídeo Del Reto Factus](https://youtu.be/PI5bEsuY1aA?si=FPCjpjvUSzby0OZ9)**
+
+<div align="center">
+  <a href="https://youtu.be/doaI10YAwKg?si=zYEz1kIKp4AsnSXA">
+    <img src="https://github.com/user-attachments/assets/d2322493-6904-4838-85b7-83405a50b57a">
+  </a>
+</div>
 
 ---
 
-<div style="display: flex; align-items: center; justify-content: center; margin: 10px 0; gap: 10px; max-height: 48px; height: 48px;">
+<div align="center" style="display: flex; align-items: center; justify-content: center; margin: 10px 0; gap: 10px; max-height: 48px; height: 48px;">
   <a href="https://github.com/sponsors/tutosrive" target="_blank">
-  <img src="https://img.shields.io/badge/Sponsor-%F0%9F%92%96%20tutosrive-orange?style=for-the-badge&logo=github" alt="Sponsor me on GitHub">
+  <img src="https://img.shields.io/badge/Sponsor-%F0%9F%92%B2%20tutosrive-blue?style=for-the-badge&logo=github" alt="Sponsor me on GitHub">
 </a>
-  <a href="https://www.buymeacoffee.com/tutosrive">
-    <img 
-      src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=tutosrive&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" 
-      style="height: 48px; width: auto; object-fit: contain; border-radius: 6px;" 
-      alt="Buy me a coffee button">
-  </a>
+  <a href="https://ko-fi.com/D1D61GNZR1" target="_blank">
+  <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Sponsor me on Ko-Fi">
+</a>
 </div>
 
 ---
