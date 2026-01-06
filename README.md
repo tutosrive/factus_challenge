@@ -18,8 +18,11 @@
     <img src="https://github.com/user-attachments/assets/d2322493-6904-4838-85b7-83405a50b57a">
   </a>
 </div>
+
 ---
+
 ## Certificado
+
 ![certificado](https://github.com/user-attachments/assets/0e11b96f-d836-4ebe-9737-384196a254c9)
 
 ¡Hola buenas!, mi nombre real es **[Santiago Rivera Marin](https://www.instagram.com/santiago.riveramarin.524/)**, tengo 19 años de edad, y este repositorio almacena el **Reto Factus** propuesto por el equipo de la _empresa_ "**[Halltec](https://halltec.co/)**".
